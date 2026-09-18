@@ -4,6 +4,24 @@ C0713A「AI Vibe Coding 遊戲設計」· 中三 STEM · 嶺南衡怡紀念中�
 
 ---
 
+## 🚀 點開始（3 步）
+
+1. **下載** —— 撳呢條 link 就會下載一個 zip：
+   <https://github.com/kelvin0611/c0713a-template/archive/refs/heads/main.zip>
+2. **解壓** —— 雙擊個 zip，會出一個資料夾 `c0713a-template-main`
+3. **用 Cursor 開嗰個資料夾**，然後喺 Cursor 嘅 Terminal 打：
+   ```bash
+   python3 -m http.server 8000
+   ```
+   再用瀏覽器開 <http://localhost:8000>
+
+> ⚠️ **唔可以就咁雙擊 `index.html`**。一定要用上面嘅 local server，
+> 唔係嘅話瀏覽器會擋住 API 請求（CORS），你會見到一片空白。
+
+睇下個 template 係咩樣：<https://kelvin0611.github.io/c0713a-template/>
+
+---
+
 ## 呢個係咩
 
 由「香港到站 App」抽出嚟嘅**空殼**：版面、CSS、狀態盒、helper 全部寫好，
