@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>（你嘅 App 名）— 通用骨架</title>
+
+<!-- 自製 favicon（純 SVG，唔用任何品牌標誌） -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317222e'/%3E%3Ccircle cx='11' cy='16' r='3.5' fill='%232dd4bf'/%3E%3Crect x='17' y='12' width='9' height='8' rx='2.5' fill='%232dd4bf'/%3E%3C/svg%3E">
+
+<!-- 版面樣式全部喺 style.css（已經寫好，唔使改） -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="phone">
+
+  <header>
+    <!-- ① 換題目第 1 樣：改個名 -->
+    <h1>（你嘅 App 名）</h1>
+    <p class="sub">C0713A 中三 STEM · 資料來源：開放數據</p>
+  </header>
+
+  <main style="display:flex;flex-direction:column;gap:14px;">
+
+    <!-- ===== 三個狀態盒：由 app.js 嘅 showStatus / showError / showEmpty 控制 ===== -->
+    <div id="status" class="box status">準備中…</div>
+    <div id="error"  class="box error" hidden></div>
+    <div id="empty"  class="box empty" hidden></div>
+
+    <!-- ========== 第 1 步：清單（loadList） ========== -->
+    <section>
+      <div class="row">
+        <h2>1. 清單</h2>
+        <button id="btn-list" class="btn">重新載入</button>
+      </div>
+      <!-- 一格格可以㩒嘅掣，由 loadList() 畫入去 -->
+      <div id="list" class="chips"></div>
+    </section>
+
+    <!-- ========== 第 2 步：詳情（showDetail） ========== -->
+    <section>
+      <h2>2. 詳情</h2>
+      <!-- 標題寫你揀咗邊一項（用 .textContent） -->
+      <div id="detail-title" class="item-title">（未揀）</div>
+      <!-- 一行一行嘅詳情，由 showDetail() 畫入去 -->
+      <div id="detail" class="list"></div>
+    </section>
+
+    <!-- ========== 第 3 步：再深入一層（showInfo） ========== -->
+    <section>
+      <h2>3. 再深入</h2>
+      <!-- 由 showInfo() 畫入去（例如「再㩒一項」之後嘅資料） -->
+      <div id="info" class="list"></div>
+    </section>
+
+    <!-- ========== 第 4 步：第二個資料來源（loadOther） ========== -->
+    <section>
+      <div class="row">
+        <h2>4. 第二個來源</h2>
+        <button id="btn-other" class="btn">載入</button>
+      </div>
+      <!-- 由 loadOther() 畫入去（同 #list 完全無關嘅另一份資料） -->
+      <div id="other" class="list"></div>
+    </section>
+
+  </main>
+
+  <!-- ========== 第 5 步：自動刷新（startAutoRefresh / refreshOnce） ========== -->
+  <footer>
+    <button id="btn-refresh" class="btn wide">自動刷新（每 15 秒）</button>
+  </footer>
+
+</div>
+
+<!-- 你只會改 app.js，唔會改呢個 HTML -->
+<script src="app.js"></script>
+</body>
+</html>

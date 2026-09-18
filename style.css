@@ -1,0 +1,139 @@
+/* ============================================================
+   通用 App 骨架 — 版面樣式（style.css）
+   C0713A 中三 STEM
+
+   ⚠️ 呢個檔案已經寫好，學生唔使改。
+      想換色／換字級，只改下面 :root 嘅變數就得 ——
+      其他規則一律用 var(--xxx)，冇硬編碼顏色。
+
+   深色卡片風：深底 ＋ 卡紙 ＋ 大字，開出嚟就似一個真 app。
+   ============================================================ */
+
+:root {
+  /* 顏色（想轉淺色？把下面幾個值換成深字淺底就得） */
+  --bg: #0e1620;          /* 底 */
+  --bg-glow: #17293c;     /* 底層漸變光暈 */
+  --card: #17222e;        /* 卡紙 */
+  --ink: #eaf1f8;         /* 主要文字 */
+  --muted: #8fa3b6;       /* 次要文字 */
+  --line: #26333f;        /* 分隔線 */
+  --brand: #2dd4bf;       /* 主色（自己揀，唔用任何官方商標顏色） */
+  --danger: #f87171;
+
+  /* 尺寸 */
+  --radius: 14px;
+  --fs-hero: 28px;        /* 大數字：主角數字一定要夠大 */
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }   /* showStatus("") 收盒就係靠呢行 */
+
+body {
+  margin: 0;
+  padding: 16px 12px 96px;          /* 底部留位，唔好畀 sticky 掣遮住最後一行 */
+  min-height: 100dvh;               /* 用 dvh 唔用 vh：手機 Safari 網址欄會遮住 */
+  background: radial-gradient(1100px 520px at 50% -8%, var(--bg-glow), var(--bg)) fixed, var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang HK", "Microsoft JhengHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 手機尺寸：最闊 420px，中間對齊 */
+.phone {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+header { text-align: center; }
+header h1 { margin: 0; font-size: 22px; letter-spacing: .5px; }
+header .sub { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
+}
+
+section h2 { margin: 0; font-size: 13px; color: var(--muted); font-weight: 600; }
+
+.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+/* 三個狀態盒：藍＝載入中、紅＝錯誤、灰＝冇資料 */
+.box {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+.box.status { background: rgba(56, 189, 248, .14); color: #93c5fd; }
+.box.error  { background: rgba(248, 113, 113, .16); color: #fca5a5; font-weight: 600; }
+.box.empty  { background: rgba(148, 163, 184, .12); color: var(--muted); }
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn:active { background: #223141; }
+.btn.wide { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; }
+.btn:disabled { opacity: .5; }
+
+/* 第 1 步：清單（可以㩒嘅細標籤） */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  max-height: 190px;
+  overflow-y: auto;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: #1e2b38;
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--ink);
+  cursor: pointer;
+}
+.chip:active { background: var(--brand); color: #08211d; }
+
+/* 第 2、3、4 步：一行一項 */
+.list { display: flex; flex-direction: column; margin-top: 10px; max-height: 320px; overflow-y: auto; }
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  padding: 9px 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  cursor: pointer;
+}
+.item:active { background: #1e2b38; }
+.item b { font-size: 15px; }
+.item .item-sub { flex: 1; color: var(--muted); font-size: 13px; }
+.item .item-right { color: var(--brand); font-weight: 700; font-size: 20px; }  /* 大字 */
+
+.item-title { margin-top: 8px; font-size: 13px; color: var(--muted); }
+
+/* 主角大數字（想特登突出一個數就用 <div class="hero">42</div>） */
+.hero { font-size: var(--fs-hero); font-weight: 700; color: var(--brand); line-height: 1.1; }
+
+footer { position: sticky; bottom: 12px; padding: 0 2px; }
